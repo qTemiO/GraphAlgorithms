@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWinExtras import QWinTaskbarButton
 
 class Ui_MatrixChoise(object):
     def setupUi(self, MatrixChoise):
@@ -24,6 +24,8 @@ class Ui_MatrixChoise(object):
         MatrixChoise.setWindowIcon(icon)
         MatrixChoise.setWindowOpacity(0.89)
         MatrixChoise.setStyleSheet('QPushButton{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-bottom-color: rgb(58, 58, 58);border-bottom-width: 1px;border-style: solid;color: rgb(255, 255, 255);padding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(77, 77, 77, 255), stop:1 rgba(97, 97, 97, 255));}QPushButton:hover{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));	border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));border-bottom-color: rgb(115, 115, 115);border-bottom-width: 1px;border-style: solid	color: rgb(255, 255, 255);padding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(107, 107, 107, 255), stop:1 rgba(157, 157, 157, 255));}QPushButton:pressed{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(62, 62, 62, 255), stop:1 rgba(22, 22, 22, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-bottom-color: rgb(58, 58, 58);border-bottom-width: 1px;border-style: solid;color: rgb(255, 255, 255);adding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(77, 77, 77, 255), stop:1 rgba(97, 97, 97, 255));}QPushButton:disabled{border-style: outset;	border-width: 2px;	border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));	border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));	border-bottom-color: rgb(58, 58, 58);	border-bottom-width: 1px;	border-style: solid;	color: rgb(0, 0, 0);	padding: 2px;	background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(57, 57, 57, 255), stop:1 rgba(77, 77, 77, 255));}')
+        self.taskbar_button = QWinTaskbarButton()
+        self.taskbar_button.setOverlayIcon(QtGui.QIcon('myicon.ico'))
         self.formLayoutWidget = QtWidgets.QWidget(MatrixChoise)
         self.formLayoutWidget.setGeometry(QtCore.QRect(30, 20, 719, 194))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
@@ -86,7 +88,7 @@ class Ui_MatrixChoise(object):
         self.table.hide()
         self.count_btn = QtWidgets.QPushButton(MatrixChoise)
         self.count_btn.setGeometry(QtCore.QRect(950, 200, 240, 100))
-        self.count_btn.setText('Выполнить алгоритм Уоршелла')
+        self.count_btn.setText('Выполнить алгоритм Флойда — Уоршелла\n(для нахождения матрицы достижимости)')
         self.count_btn.hide()
         
         self.row_choise_cb = QtWidgets.QComboBox(MatrixChoise)
@@ -105,8 +107,7 @@ class Ui_MatrixChoise(object):
         self.count_btn_2.hide()
         self.count_btn_3 = QtWidgets.QPushButton(MatrixChoise)
         self.count_btn_3.setGeometry(QtCore.QRect(950, 440, 240, 100))
-        self.count_btn_3.setText('Выполнить алгоритм Дейкстры\n(в разработке)')
-        self.count_btn_3.setEnabled(False)
+        self.count_btn_3.setText('Выполнить алгоритм Флойда — Уоршелла\n(для нахождения кратчайших путей)')
         self.count_btn_3.hide()
         self.return_btn = QtWidgets.QPushButton(MatrixChoise)
         self.return_btn.setGeometry(QtCore.QRect(1000, 30, 150, 50))

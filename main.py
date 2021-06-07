@@ -1,11 +1,12 @@
 import sys
 
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 from forms.ChoiseFrom import Ui_MatrixChoise
 from core import (
     getWorshellMatrix,
-    getBellmanMatrix
+    getBellmanMatrix,
+    getFloydMatrix
     )
 
 from loguru import logger
@@ -19,6 +20,7 @@ class Choise(QtWidgets.QMainWindow):
 
         self.ui.choise_btn.clicked.connect(self.getSize)
         self.ui.count_btn.clicked.connect(self.worshellMatrix)
+        self.ui.count_btn_3.clicked.connect(self.floydMatrix)
         self.ui.row_choise_helper_lbl.clicked.connect(self.bellmanMatrix)
         self.ui.count_btn_2.clicked.connect(self.showBellman)
         self.ui.clear_btn.clicked.connect(self.clearMatrix)
@@ -67,6 +69,7 @@ class Choise(QtWidgets.QMainWindow):
                 str_element = self.ui.table.item(row,col)
                 if str_element:
                     str_element = str_element.text()
+                    if str_element == 'inf': str_element = '0'
                 else:
                     str_element = '0'
                 row_list.append(int(str_element))
@@ -87,7 +90,7 @@ class Choise(QtWidgets.QMainWindow):
                 for col in range(self.cols):
                     cellinfo = QtWidgets.QTableWidgetItem(str(WorshellMatrix[row][col]))
                     self.ui.table.setItem(row,col, cellinfo)
-            self.ui.help_lbl.setText('Получили матрицу, под воздействием алгоритма Уоллшера-Флойда')
+            self.ui.help_lbl.setText('Получили матрицу, под воздействием алгоритма Флойда—Уоршелла')
 
     def returnToSize(self):
         self.ui.col_sb.show()
@@ -120,16 +123,21 @@ class Choise(QtWidgets.QMainWindow):
         
     def clearMatrix(self):
         self.ui.table.clear()
+        self.setWindowTitle('Вы стерли значения. Введите числа заново')
+        self.ui.help_lbl.setText('Вы стерли значения. Введите числа заново')
 
     def showBellman(self):
+        self.setWindowTitle('Выбор стартовой точки...')
         self.ui.count_btn_2.hide()
         self.ui.row_choise_cb.show()
         self.ui.row_choise_helper_lbl.show()
 
         for row in range(self.rows):
             self.ui.row_choise_cb.addItem(f'{row + 1} точка', row)
+        self.ui.help_lbl.setText('Выберите стартовую точку (строку), для которой будут вычислены кратчайшие пути')
 
     def bellmanMatrix(self):
+        self.setWindowTitle('Матрица под воздейтсвием алгоритма Беллмана-Форда')
         self.collectMatrix()
         logger.success(f'Выбранная позиция - {self.ui.row_choise_cb.currentData() + 1}')
         startpoint = self.ui.row_choise_cb.currentData() + 1
@@ -137,8 +145,21 @@ class Choise(QtWidgets.QMainWindow):
         logger.success(f'Кратчайшие пути: {ways}')
         self.ui.help_lbl.setText(f'Кратчайшие пути успешно вычислены!\nПолученные пути: {[way for way in ways]} для стартовой позиции {startpoint}')
         
+    def floydMatrix(self):
+        self.setWindowTitle('Матрица под воздейтсвием алгоритма Уоршелла-Флойда, для кратчайших путей')
+        self.collectMatrix()
+        floydMatrix = getFloydMatrix(self.matrix, self.rows, self.cols)
+        logger.success(f'Матрица Флойда получена!\n{floydMatrix}')
+
+        for row in range(self.rows):
+            for col in range(self.cols):
+                cellinfo = QtWidgets.QTableWidgetItem(str(floydMatrix[row][col]))
+                self.ui.table.setItem(row,col, cellinfo)
+        self.ui.help_lbl.setText('Получили матрицу, под воздействием алгоритма Флойда—Уоршелла\n(для нахождения кратчайших путей)')
+
 app = QtWidgets.QApplication([])
 application = Choise()
+application.setWindowIcon(QtGui.QIcon('myicon.ico'))
 application.show()
 
 sys.exit(app.exec())

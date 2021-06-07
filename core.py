@@ -1,6 +1,8 @@
 import math
 from typing import Iterator
 
+from loguru import logger
+
 def getWorshellCol(iteration, rows, matrix):
     WC = []
     #print('DEBUG: Iteration - ' + str(iteration))
@@ -118,4 +120,25 @@ def getBellmanMatrix(matrix, rows, cols, startPoint):
             
     return distance
 
-#print(getBellmanMatrix([[1,0,10], [1,1, 0], [1,1,1]], 3, 3, 2))
+def getFloydMatrix(matrix, rows, cols):
+    current_matrix = matrix
+    for row in range(rows):
+        for col in range(cols):
+            if current_matrix[row][col] == 0 and row != col:
+                current_matrix[row][col] = math.inf
+
+    totalIterations = rows
+    for iteration in range(totalIterations):
+        new_matrix = []
+        for row in range(rows):
+            row_list = []
+            for col in range(cols):
+                if current_matrix[row][col] > current_matrix[row][iteration] + current_matrix[iteration][col]:
+                    row_list.append(current_matrix[row][iteration] + current_matrix[iteration][col])
+                else:
+                    row_list.append(current_matrix[row][col])
+            new_matrix.append(row_list)
+        current_matrix = new_matrix
+
+    floydMatrix = current_matrix
+    return floydMatrix
