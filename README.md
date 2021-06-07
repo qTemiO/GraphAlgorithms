@@ -1,7 +1,8 @@
 # GraphAlgorithms
-<h4>Worshell-Floyd, Bellman-Ford and other algos for my study stuff</h4>
+<h4>Floyd-Worshel, Bellman-Ford and other algos for my study stuff</h4>
 
 Hello eveone, this is my PyQt5 project for some study-practice
+# Installation 
 
 ## TO RUN this you should: 
 1) Make an virtual enviroment 
@@ -23,4 +24,11 @@ Enjoy!
    `pyinstaller --onefile --icon=myicon.ico --windowed main.py`
    
    Then, after some time in <i>./build</i> folder you may find <b>main.exe</b> file
-   
+
+# Examples of algos 
+
+### This is an example what Bellman-Ford algo should do
+![Example screenshot](./bellman-ford_example.jpg)
+
+### An example for Floyd-Worshel algo
+![Example screenshot](./example.jpg)
