@@ -22,7 +22,7 @@ class Ui_MatrixChoise(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("forms\\../../Background/fon_68.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MatrixChoise.setWindowIcon(icon)
-        MatrixChoise.setWindowOpacity(0.89)
+        MatrixChoise.setWindowOpacity(0.94)
         MatrixChoise.setStyleSheet('QPushButton{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-bottom-color: rgb(58, 58, 58);border-bottom-width: 1px;border-style: solid;color: rgb(255, 255, 255);padding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(77, 77, 77, 255), stop:1 rgba(97, 97, 97, 255));}QPushButton:hover{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));	border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));border-bottom-color: rgb(115, 115, 115);border-bottom-width: 1px;border-style: solid	color: rgb(255, 255, 255);padding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(107, 107, 107, 255), stop:1 rgba(157, 157, 157, 255));}QPushButton:pressed{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(62, 62, 62, 255), stop:1 rgba(22, 22, 22, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-bottom-color: rgb(58, 58, 58);border-bottom-width: 1px;border-style: solid;color: rgb(255, 255, 255);adding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(77, 77, 77, 255), stop:1 rgba(97, 97, 97, 255));}QPushButton:disabled{border-style: outset;	border-width: 2px;	border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));	border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));	border-bottom-color: rgb(58, 58, 58);	border-bottom-width: 1px;	border-style: solid;	color: rgb(0, 0, 0);	padding: 2px;	background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(57, 57, 57, 255), stop:1 rgba(77, 77, 77, 255));}')
         self.taskbar_button = QWinTaskbarButton()
         self.taskbar_button.setOverlayIcon(QtGui.QIcon('myicon.ico'))
@@ -81,6 +81,11 @@ class Ui_MatrixChoise(object):
         font.setPointSize(36)
         font.setBold(True)
         font.setWeight(75)
+        
+        self.help_lbl = QtWidgets.QLabel(MatrixChoise)
+        self.help_lbl.setGeometry(100, 600, 1000, 200)
+        self.help_lbl.setText('БОЛЬШОЙ ТЕКСТ ЗДЕСЬ')
+
         self.choise_btn.setFont(font)
         self.choise_btn.setObjectName("choise_btn")
         self.table = QtWidgets.QTableWidget(MatrixChoise)
@@ -105,6 +110,22 @@ class Ui_MatrixChoise(object):
         self.count_btn_2.setGeometry(QtCore.QRect(950, 320, 240, 100))
         self.count_btn_2.setText('Выполнить алгоритм Беллмана-Форда')
         self.count_btn_2.hide()
+        
+        self.row_choise_dextra_btn = QtWidgets.QPushButton(MatrixChoise)
+        self.row_choise_dextra_btn.setGeometry(QtCore.QRect(970, 610, 200, 30))
+        self.row_choise_dextra_btn.setText('Выбрать стартовую точку (строку)')
+        self.row_choise_dextra_btn.setStyleSheet('border:1px solid grey;background-color:rgb(100, 100, 100);color:rgb(255,255,255);')
+        self.row_choise_dextra_btn.hide()
+
+        self.row_choise_dextra_cb = QtWidgets.QComboBox(MatrixChoise)
+        self.row_choise_dextra_cb.setGeometry(QtCore.QRect(955, 565, 230, 40))
+        self.row_choise_dextra_cb.hide()
+
+        self.count_btn_4 = QtWidgets.QPushButton(MatrixChoise)
+        self.count_btn_4.setGeometry(QtCore.QRect(950, 560, 240, 100))
+        self.count_btn_4.setText('Выполнить алгоритм Дейкстры')
+        self.count_btn_4.hide()
+
         self.count_btn_3 = QtWidgets.QPushButton(MatrixChoise)
         self.count_btn_3.setGeometry(QtCore.QRect(950, 440, 240, 100))
         self.count_btn_3.setText('Выполнить алгоритм Флойда — Уоршелла\n(для нахождения кратчайших путей)')
@@ -117,9 +138,6 @@ class Ui_MatrixChoise(object):
         self.clear_btn.setGeometry(QtCore.QRect(1000, 100, 150, 50))
         self.clear_btn.setText('Очистить матрицу')
         self.clear_btn.hide()
-        self.help_lbl = QtWidgets.QLabel(MatrixChoise)
-        self.help_lbl.setGeometry(100, 600, 1000, 200)
-        self.help_lbl.setText('БОЛЬШОЙ ТЕКСТ ЗДЕСЬ')
         help_font = QtGui.QFont()
         help_font.setFamily("System")
         help_font.setPointSize(36)

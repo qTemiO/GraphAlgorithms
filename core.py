@@ -98,11 +98,14 @@ def getBellmanMatrix(matrix, rows, cols, startPoint):
     for iterations in range(totalIterations):
         distance.append(math.inf)
     distance[startPoint - 1] = 0
-    
+
+    theWay = []
 
     currentPosition = startPoint - 1
 
     for iteration in range(totalIterations):
+        
+        theWay.append(currentPosition)
         print(f'Current position  - {currentPosition}')
 
         connectiblePoints = getChoisePoints(matrix, currentPosition)
@@ -113,10 +116,14 @@ def getBellmanMatrix(matrix, rows, cols, startPoint):
             if distance[point] > distance[currentPosition] + matrix[currentPosition][point]:
                 distance[point] = distance[currentPosition] + matrix[currentPosition][point]
 
-        if currentPosition + 1 == len(distance):
-            currentPosition = 0
+        minimalIndex = getMinimalIndex(distance, theWay)
+        if minimalIndex == -1:
+            for i in range(rows):
+                if i not in theWay:
+                    if distance[i] == math.inf:
+                        logger.warning('List ended')
         else: 
-            currentPosition += 1
+            currentPosition = minimalIndex
             
     return distance
 
@@ -142,3 +149,55 @@ def getFloydMatrix(matrix, rows, cols):
 
     floydMatrix = current_matrix
     return floydMatrix
+
+def getMinimalIndex(distance, theWay):
+    
+    index = 0
+    minimal = math.inf
+    minimalIndex = -1
+    for dist in distance:
+        if (dist < minimal) and (index not in theWay): 
+            minimal = dist
+            minimalIndex = index
+        index += 1
+
+    return minimalIndex        
+
+def getDextraWay(matrix, rows, cols, startPoint):
+    totalIterations = rows
+
+    distance = []
+    for iterations in range(totalIterations):
+        distance.append(math.inf)
+    distance[startPoint - 1] = 0
+    
+    theWay = []
+    currentPosition = startPoint - 1
+
+
+    for iteration in range(totalIterations):
+        theWay.append(currentPosition)
+        print(f'Current position  - {currentPosition}')
+
+        connectiblePoints = getChoisePoints(matrix, currentPosition)
+        
+        print(f'Points with this position - {connectiblePoints}')
+
+        for point in connectiblePoints:
+            if distance[point] > distance[currentPosition] + matrix[currentPosition][point]:
+                distance[point] = distance[currentPosition] + matrix[currentPosition][point]
+        
+        
+        minimalIndex = getMinimalIndex(distance, theWay)
+        if minimalIndex == -1:
+            for i in range(rows):
+                if i not in theWay:
+                    if distance[i] == math.inf:
+                        logger.warning('List ended')
+        else: 
+            currentPosition = minimalIndex
+
+    return distance, theWay
+        
+
+    

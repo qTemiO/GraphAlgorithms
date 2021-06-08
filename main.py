@@ -6,7 +6,8 @@ from forms.ChoiseFrom import Ui_MatrixChoise
 from core import (
     getWorshellMatrix,
     getBellmanMatrix,
-    getFloydMatrix
+    getFloydMatrix,
+    getDextraWay
     )
 
 from loguru import logger
@@ -20,9 +21,11 @@ class Choise(QtWidgets.QMainWindow):
 
         self.ui.choise_btn.clicked.connect(self.getSize)
         self.ui.count_btn.clicked.connect(self.worshellMatrix)
-        self.ui.count_btn_3.clicked.connect(self.floydMatrix)
-        self.ui.row_choise_helper_lbl.clicked.connect(self.bellmanMatrix)
         self.ui.count_btn_2.clicked.connect(self.showBellman)
+        self.ui.count_btn_3.clicked.connect(self.floydMatrix)
+        self.ui.count_btn_4.clicked.connect(self.showDextra)        
+        self.ui.row_choise_helper_lbl.clicked.connect(self.bellmanMatrix)
+        self.ui.row_choise_dextra_btn.clicked.connect(self.dextraMatrix)
         self.ui.clear_btn.clicked.connect(self.clearMatrix)
         self.ui.return_btn.clicked.connect(self.returnToSize)
         self.status = ''
@@ -46,6 +49,7 @@ class Choise(QtWidgets.QMainWindow):
         self.ui.count_btn.show()
         self.ui.count_btn_2.show()
         self.ui.count_btn_3.show()
+        self.ui.count_btn_4.show()
         self.ui.return_btn.show()
         self.ui.clear_btn.show()
         self.ui.help_lbl.show()
@@ -105,6 +109,7 @@ class Choise(QtWidgets.QMainWindow):
         self.ui.count_btn.hide()
         self.ui.count_btn_2.hide()
         self.ui.count_btn_3.hide()
+        self.ui.count_btn_4.hide()
         self.ui.return_btn.hide()
         self.ui.clear_btn.hide()
         self.ui.help_lbl.hide()
@@ -136,6 +141,16 @@ class Choise(QtWidgets.QMainWindow):
             self.ui.row_choise_cb.addItem(f'{row + 1} точка', row)
         self.ui.help_lbl.setText('Выберите стартовую точку (строку), для которой будут вычислены кратчайшие пути')
 
+    def showDextra(self):
+        self.setWindowTitle('Выбор стартовой точки...')
+        self.ui.count_btn_4.hide()
+        self.ui.row_choise_dextra_cb.show()
+        self.ui.row_choise_dextra_btn.show()
+
+        for row in range(self.rows):
+            self.ui.row_choise_dextra_cb.addItem(f'{row + 1} точка', row)
+        self.ui.help_lbl.setText('Выберите стартовую точку (строку), для которой будут вычислены кратчайшие пути')
+
     def bellmanMatrix(self):
         self.setWindowTitle('Матрица под воздейтсвием алгоритма Беллмана-Форда')
         self.collectMatrix()
@@ -145,6 +160,16 @@ class Choise(QtWidgets.QMainWindow):
         logger.success(f'Кратчайшие пути: {ways}')
         self.ui.help_lbl.setText(f'Кратчайшие пути успешно вычислены!\nПолученные пути: {[way for way in ways]} для стартовой позиции {startpoint}')
         
+    def dextraMatrix(self):
+        self.setWindowTitle('Матрица под воздейтсвием алгоритма Дейкстры')
+        self.collectMatrix()
+        logger.success(f'Выбранная позиция - {self.ui.row_choise_dextra_cb.currentData() + 1}')
+        startpoint = self.ui.row_choise_dextra_cb.currentData() + 1
+        ways, path = getDextraWay(self.matrix, self.rows, self.cols, startpoint)
+        logger.success(f'Кратчайшие пути: {ways}')
+        logger.success(f'Общий путь обхода - {path}')
+        self.ui.help_lbl.setText(f'Кратчайшие пути успешно вычислены!\nПолученные пути: {[way for way in ways]} для стартовой позиции {startpoint}\nПуть обхода вершин: {path}')
+
     def floydMatrix(self):
         self.setWindowTitle('Матрица под воздейтсвием алгоритма Уоршелла-Флойда, для кратчайших путей')
         self.collectMatrix()
