@@ -125,6 +125,11 @@ class Choise(QtWidgets.QMainWindow):
         if self.ui.row_choise_cb.count() > 0:
             for item in range(self.ui.row_choise_cb.count()):
                 self.ui.row_choise_cb.removeItem(self.ui.row_choise_cb.currentIndex())
+
+        if self.ui.row_choise_dextra_cb.count() > 0:
+            for item in range(self.ui.row_choise_dextra_cb.count()):
+                self.ui.row_choise_dextra_cb.removeItem(self.ui.row_choise_dextra_cb.currentIndex())
+
         
     def clearMatrix(self):
         self.ui.table.clear()
