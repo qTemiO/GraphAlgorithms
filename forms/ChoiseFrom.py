@@ -26,23 +26,28 @@ class Ui_MatrixChoise(object):
         MatrixChoise.setStyleSheet('QPushButton{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-bottom-color: rgb(58, 58, 58);border-bottom-width: 1px;border-style: solid;color: rgb(255, 255, 255);padding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(77, 77, 77, 255), stop:1 rgba(97, 97, 97, 255));}QPushButton:hover{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));	border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(110, 110, 110, 255));border-bottom-color: rgb(115, 115, 115);border-bottom-width: 1px;border-style: solid	color: rgb(255, 255, 255);padding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(107, 107, 107, 255), stop:1 rgba(157, 157, 157, 255));}QPushButton:pressed{border-style: outset;border-width: 2px;border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(62, 62, 62, 255), stop:1 rgba(22, 22, 22, 255));border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-bottom-color: rgb(58, 58, 58);border-bottom-width: 1px;border-style: solid;color: rgb(255, 255, 255);adding: 2px;background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(77, 77, 77, 255), stop:1 rgba(97, 97, 97, 255));}QPushButton:disabled{border-style: outset;	border-width: 2px;	border-top-color: qlineargradient(spread:pad, x1:0.5, y1:0.6, x2:0.5, y2:0.4, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));	border-right-color: qlineargradient(spread:pad, x1:0.4, y1:0.5, x2:0.6, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));border-left-color: qlineargradient(spread:pad, x1:0.6, y1:0.5, x2:0.4, y2:0.5, stop:0 rgba(115, 115, 115, 255), stop:1 rgba(62, 62, 62, 255));	border-bottom-color: rgb(58, 58, 58);	border-bottom-width: 1px;	border-style: solid;	color: rgb(0, 0, 0);	padding: 2px;	background-color: qlineargradient(spread:pad, x1:0.5, y1:1, x2:0.5, y2:0, stop:0 rgba(57, 57, 57, 255), stop:1 rgba(77, 77, 77, 255));}')
         self.taskbar_button = QWinTaskbarButton()
         self.taskbar_button.setOverlayIcon(QtGui.QIcon('myicon.ico'))
+
         self.formLayoutWidget = QtWidgets.QWidget(MatrixChoise)
         self.formLayoutWidget.setGeometry(QtCore.QRect(30, 20, 719, 194))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
+        
         self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
         self.formLayout.setContentsMargins(0, 0, 0, 0)
         self.formLayout.setObjectName("formLayout")
+        
         self.row_lbl = QtWidgets.QLabel(self.formLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("System")
         font.setPointSize(36)
         font.setBold(True)
         font.setWeight(75)
+
         self.row_lbl.setFont(font)
         self.row_lbl.setLineWidth(19)
         self.row_lbl.setTextFormat(QtCore.Qt.AutoText)
         self.row_lbl.setObjectName("row_lbl")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.row_lbl)
+        
         self.row_sb = QtWidgets.QSpinBox(self.formLayoutWidget)
         self.row_sb.setMinimumSize(QtCore.QSize(10, 60))
         self.row_sb.setMaximumSize(QtCore.QSize(120, 68))
