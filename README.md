@@ -13,7 +13,7 @@ Hello eveone, this is my PyQt5 project for some study-practice
    or if you run on Linux
    `$ source venv/bin/activate`
    
-3) Install some nessesary libs
+3) Install some nessesary libs (PyQt5, loguru, pyqt5-tools)
    `pip install -r requirements.txt`
    
 3) Run the main.py file
