@@ -165,10 +165,11 @@ class Choise(QtWidgets.QMainWindow):
         self.collectMatrix()
         logger.success(f'Выбранная позиция - {self.ui.row_choise_dextra_cb.currentData() + 1}')
         startpoint = self.ui.row_choise_dextra_cb.currentData() + 1
-        ways, path = getDextraWay(self.matrix, self.rows, self.cols, startpoint)
+        ways, path, points_path = getDextraWay(self.matrix, self.rows, self.cols, startpoint)
         logger.success(f'Кратчайшие пути: {ways}')
         logger.success(f'Общий путь обхода - {path}')
-        self.ui.help_lbl.setText(f'Кратчайшие пути успешно вычислены!\nПолученные пути: {[way for way in ways]} для стартовой позиции {startpoint}\nПуть обхода вершин: {path}')
+        logger.success(f'Путь обхода  от {startpoint} до {self.rows} - {points_path}')
+        self.ui.help_lbl.setText(f'Кратчайшие пути успешно вычислены!\nПолученные пути: {[way for way in ways]} для стартовой позиции {startpoint}\nПуть обхода вершин: {path}\nПуть обхода от  {startpoint} до {self.rows}: {points_path}')
 
     def floydMatrix(self):
         self.setWindowTitle('Матрица под воздейтсвием алгоритма Уоршелла-Флойда, для кратчайших путей')

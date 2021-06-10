@@ -167,13 +167,17 @@ def getDextraWay(matrix, rows, cols, startPoint):
     totalIterations = rows
 
     distance = []
+    pointsPath = []
     for iterations in range(totalIterations):
         distance.append(math.inf)
+        pointsPath.append(str(''))
+
+    pointsPath[startPoint - 1] = '0'
     distance[startPoint - 1] = 0
     
     theWay = []
-    currentPosition = startPoint - 1
 
+    currentPosition = startPoint - 1
 
     for iteration in range(totalIterations):
         theWay.append(currentPosition)
@@ -186,8 +190,9 @@ def getDextraWay(matrix, rows, cols, startPoint):
         for point in connectiblePoints:
             if distance[point] > distance[currentPosition] + matrix[currentPosition][point]:
                 distance[point] = distance[currentPosition] + matrix[currentPosition][point]
-        
-        
+                pointsPath[point] = f'{ pointsPath[currentPosition] }{ point }'
+
+
         minimalIndex = getMinimalIndex(distance, theWay)
         if minimalIndex == -1:
             for i in range(rows):
@@ -196,8 +201,17 @@ def getDextraWay(matrix, rows, cols, startPoint):
                         logger.warning('List ended')
         else: 
             currentPosition = minimalIndex
-
-    return distance, theWay
         
+    for row in range(rows):
+        logger.warning(matrix[row])
 
-    
+    print('\n')
+    updated_point_path = []
+    for point in pointsPath:
+        point_path = ''
+        for edge in point:
+            point_path += f'{int(edge) + 1}'
+        updated_point_path.append(point_path)
+
+    return distance, theWay, updated_point_path
+        
