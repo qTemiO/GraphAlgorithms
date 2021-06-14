@@ -20,7 +20,7 @@ Hello eveone, this is my PyQt5 project for some study-practice
 
 Enjoy!
 
-## TO BUILT this you should run the command in project folder:
+## TO BUILT this you should run the command in project folder (also you need to install a pyinstaller lib):
    `pyinstaller --onefile --icon=myicon.ico --windowed main.py`
    
    Then, after some time in <i>./build</i> folder you may find <b>main.exe</b> file
