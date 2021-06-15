@@ -2,6 +2,7 @@
 <h4>Floyd-Worshel, Bellman-Ford and other algos for my study stuff</h4>
 
 Hello eveone, this is my PyQt5 project for some study-practice
+there are Deikstra, Bellman-Ford and Floyd-Worshel algoritms. Them has been realised by 
 # Installation 
 
 ## TO RUN this you should: 
@@ -13,8 +14,15 @@ Hello eveone, this is my PyQt5 project for some study-practice
    or if you run on Linux
    `$ source venv/bin/activate`
    
-3) Install some nessesary libs (PyQt5, loguru, pyqt5-tools)
-   `pip install -r requirements.txt`
+3) Install some nessesary libs:
+
+`pip install PyQt5` 
+
+`pip install loguru` 
+
+`pip install pyqt5-tools`
+
+`pip install numpy`
    
 3) Run the main.py file
 
@@ -32,3 +40,6 @@ Enjoy!
 
 ### An example for Floyd-Worshel algo
 ![Example screenshot](./example.jpg)
+
+### Deikstra algo
+![hippo](https://slideplayer.com/slide/14566522/90/images/11/Dijkstra’s+algorithm%3A+example.jpg)
